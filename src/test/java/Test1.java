@@ -1,4 +1,4 @@
-import com.epam.jl.demo.ioc.Person;
+import lab.model.Person;
 import lombok.val;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
