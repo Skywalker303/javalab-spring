@@ -10,16 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleAppTest {
 
-    @SuppressWarnings("WeakerAccess")
     BeanFactory context = new ClassPathXmlApplicationContext(
             APPLICATION_CONTEXT_XML_FILE_NAME);
 
     @Test
     void testInitPerson() {
-        assertEquals(getExpectedPerson(),
-                // FYI: Another way to achieve the bean
-                // context.getBean(UsualPerson.class)
-                context.getBean("person")
-        );
+        assertEquals(getExpectedPerson(), context.getBean("person"));
     }
 }

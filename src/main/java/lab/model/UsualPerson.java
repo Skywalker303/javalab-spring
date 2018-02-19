@@ -1,32 +1,35 @@
 package lab.model;
 
-import com.epam.jl.demo.ioc.Contact;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
 import lombok.experimental.Wither;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
-import static lombok.AccessLevel.PRIVATE;
-
 @Data
-@Entity
-@Table(name = "person")
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
+@Entity
 @Component("person")
 public class UsualPerson implements Person {
 
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
-    String firstName;
-    String lastName;
+    private String firstName;
+    private String lastName;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

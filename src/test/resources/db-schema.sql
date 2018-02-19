@@ -1,3 +1,5 @@
+SET MODE POSTGRESQL;
+
 CREATE TABLE IF NOT EXISTS country (
   id        IDENTITY,
   name      VARCHAR(255),

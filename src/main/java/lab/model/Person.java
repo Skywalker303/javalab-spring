@@ -1,7 +1,5 @@
 package lab.model;
 
-import com.epam.jl.demo.ioc.Contact;
-
 import java.util.List;
 
 import static java.lang.String.format;
