@@ -1,10 +1,27 @@
 package lab.model;
 
+import com.epam.jl.demo.ioc.Contact;
+
+import java.util.List;
+
 import static java.lang.String.format;
 
 public interface Person {
-    String getName ();
-    default String gayHello(Person person) {
+    String getFirstName();
+    String getLastName();
+    Country getCountry();
+    int getAge();
+    float getHeight();
+    boolean isProgrammer();
+    Person withBroke(boolean broke);
+    boolean isBroke();
+    List<Contact> getContacts();
+
+    default String getName() {
+        return String.format("%s %s", getFirstName(), getLastName());
+    }
+
+    default String gatHello(Person person) {
         return format("Hello, %s! I`m %s", person.getName(), getName());
     }
 }

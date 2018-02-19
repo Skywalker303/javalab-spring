@@ -1,9 +1,18 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:+'
+    }
+}
+
 group = 'com.epam.javalab'
 version = '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 9
 
 repositories {
     mavenCentral()
@@ -13,20 +22,38 @@ repositories {
 
 apply plugin: 'org.junit.platform.gradle.plugin'
 
+configurations {
+    testCompile.extendsFrom compileOnly
+}
+
+// turns sout`ing on in tests:
+test.testLogging.showStandardStreams = true
+
 dependencies {
     compile 'org.springframework:spring-context:+',
 
-            // todo: insert additional dependencies here
+            // AOP
+            'org.aspectj:aspectjrt:+',
+            'org.aspectj:aspectjweaver:+',
+            'aopalliance:aopalliance:+',
+
+            // JDBC
+            'org.springframework:spring-jdbc:+',
 
             'org.apache.logging.log4j:log4j-slf4j-impl:+',
+            'javax.xml.bind:jaxb-api:+',
             'io.vavr:vavr:+'
+
+    // H2
+    testRuntime 'com.h2database:h2:+'
 
     compileOnly 'org.projectlombok:lombok:+',
             'edu.washington.cs.types.checker:checker-framework:+'
 
     testCompile 'org.junit.jupiter:junit-jupiter-params:+',
             'org.hamcrest:java-hamcrest:+',
-            'org.mockito:mockito-core:+'
+            'org.mockito:mockito-core:+',
+            'org.springframework:spring-test:+'
 
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:+'
 
@@ -34,9 +61,9 @@ dependencies {
     testCompileOnly 'org.apiguardian:apiguardian-api:+'
 }
 
-// type in terminal: gradle wrapper --gradle-version=4.5
+// type in terminal: gradle wrapper --gradle-version=4.5.1
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.5'
+    gradleVersion = '4.5.1'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
